@@ -1,5 +1,20 @@
-import { Controller, Delete, Get, Param, Post, Put, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { Request, Response } from 'express';
+
+// get request parameters
+interface VideoParams {
+  id: number;
+  name: string;
+}
 
 @Controller('/users')
 export class UsersController {
@@ -72,5 +87,16 @@ export class UsersController {
     return res.json({
       message: `JSON response from NestJS dynamic DELETE request`,
     });
+  }
+  // get request with parameters
+  @Get('/videos/:id/:name')
+  getVideos(@Param() params: VideoParams) {
+    console.log(params.id);
+    console.log(params.name);
+    return {
+      success: true,
+      id: params.id,
+      name: params.name,
+    };
   }
 }
