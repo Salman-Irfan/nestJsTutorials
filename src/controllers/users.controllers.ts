@@ -5,6 +5,8 @@ export class UsersController {
   // methods for request handlers
   @Get('/profile')
   getProfile() {
-    return `Hello users controller`
+    return {
+      message: `json response from nest js`
+    }
   }
 }
