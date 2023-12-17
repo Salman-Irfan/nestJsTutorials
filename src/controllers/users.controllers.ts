@@ -18,6 +18,13 @@ interface VideoParams {
   id: number;
   name: string;
 }
+// post request data
+interface VideoDTO {
+  title: string;
+  description: string;
+  tag: string;
+}
+
 
 @Controller('/users')
 export class UsersController {
@@ -122,11 +129,12 @@ export class UsersController {
   }
   // body decorators with post request
   @Post('/video')
-  addVideo(@Body() requestData: Record<string, any>) {
-    console.log(requestData)
+  addVideo(@Body() requestData: VideoDTO) {
+    console.log(requestData);
     return {
       message: 'json response from nest js post request with Body decorators',
-      requestData: requestData
+      requestData: requestData,
+      title: requestData.title
     };
   }
 }
