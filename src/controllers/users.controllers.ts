@@ -2,6 +2,7 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   Param,
   Post,
   Put,
@@ -102,13 +103,20 @@ export class UsersController {
   }
   // get request with query parameters
   @Get('/records')
-  getRecords(
-    @Query() query: Record<string, any>
-  ){
+  getRecords(@Query() query: Record<string, any>) {
     console.log(query);
     return {
       success: true,
-      query: query
-    }
+      query: query,
+    };
+  }
+  // extract headers from request
+  @Get('/headers')
+  getHeaders(@Headers() headers: Record<string, any>) {
+    console.log(headers);
+    return {
+      success: true,
+      headers: headers,
+    };
   }
 }
