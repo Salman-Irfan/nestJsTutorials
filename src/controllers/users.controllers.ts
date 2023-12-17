@@ -122,11 +122,11 @@ export class UsersController {
   }
   // body decorators with post request
   @Post('/video')
-  addVideo(@Body() body: Record<string, any>) {
-    console.log(body)
+  addVideo(@Body() requestData: Record<string, any>) {
+    console.log(requestData)
     return {
-      message: 'json response from nest js post request with body decorators',
-      body: body
+      message: 'json response from nest js post request with Body decorators',
+      requestData: requestData
     };
   }
 }
