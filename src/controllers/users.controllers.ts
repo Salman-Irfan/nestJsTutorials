@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -117,6 +118,15 @@ export class UsersController {
     return {
       success: true,
       headers: headers,
+    };
+  }
+  // body decorators with post request
+  @Post('/video')
+  addVideo(@Body() body: Record<string, any>) {
+    console.log(body)
+    return {
+      message: 'json response from nest js post request with body decorators',
+      body: body
     };
   }
 }
