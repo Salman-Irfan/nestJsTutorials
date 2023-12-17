@@ -25,7 +25,6 @@ interface VideoDTO {
   tag: string;
 }
 
-
 @Controller('/users')
 export class UsersController {
   // methods for request handlers
@@ -134,7 +133,7 @@ export class UsersController {
     return {
       message: 'json response from nest js post request with Body decorators',
       requestData: requestData,
-      title: requestData.title
+      title: requestData.title,
     };
   }
 }
