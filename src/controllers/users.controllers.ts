@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   Res,
 } from '@nestjs/common';
@@ -98,5 +99,16 @@ export class UsersController {
       id: params.id,
       name: params.name,
     };
+  }
+  // get request with query parameters
+  @Get('/records')
+  getRecords(
+    @Query() query: Record<string, any>
+  ){
+    console.log(query);
+    return {
+      success: true,
+      query: query
+    }
   }
 }
