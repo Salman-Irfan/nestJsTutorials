@@ -1,5 +1,5 @@
-import { Controller, Get, Param, Post, Put, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Delete, Get, Param, Post, Put, Req, Res } from '@nestjs/common';
+import { Request, Response } from 'express';
 
 @Controller('/users')
 export class UsersController {
@@ -43,7 +43,7 @@ export class UsersController {
   dynamicPutProfile(
     @Req() req: Request,
     @Param('id') id: string,
-    @Param() params: Record<string, string>,
+    @Param() params: Record<string, any>,
   ) {
     console.log(req.body);
     console.log(`Received ID: ${id}`);
@@ -54,7 +54,23 @@ export class UsersController {
     // Perform your logic here
 
     return {
-      message: `JSON response from NestJS dynamic PUT request`,
+      message: `JSON response from NestJS totally dynamic PUT request`,
     };
+  }
+  // delete request with nest response
+  @Delete('/profile/:id')
+  deleteProfile(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Param('id') id: string,
+  ) {
+    console.log(req.body);
+    console.log(`Received ID: ${id}`);
+
+    // Perform your logic here
+
+    return res.json({
+      message: `JSON response from NestJS dynamic DELETE request`,
+    });
   }
 }
