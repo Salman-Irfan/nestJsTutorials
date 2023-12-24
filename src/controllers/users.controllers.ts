@@ -10,8 +10,11 @@ import {
   Query,
   Req,
   Res,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Request, Response, Express } from 'express';
 
 // get request parameters
 interface VideoParams {
@@ -128,8 +131,13 @@ export class UsersController {
   }
   // body decorators with post request
   @Post('/video')
-  addVideo(@Body() requestData: VideoDTO) {
+  @UseInterceptors(FileInterceptor('file')) // 'file' is the field name for the uploaded file in your form
+  addVideo(
+    @Body() requestData: VideoDTO,
+    @UploadedFile() file: Express.Multer.File
+  ) {
     console.log(requestData);
+    console.log(file);
     return {
       message: 'json response from nest js post request with Body decorators',
       requestData: requestData,
