@@ -24,13 +24,19 @@ const IS_DEV_MODE = true;
     { provide: 'DATABASE_NAME', useValue: 'nestMongo' },
     {
       provide: 'EVENT_STORE',
-      useFactory: () => {
-        const eventBus = IS_DEV_MODE 
-          ? new ReplaySubject(2)
+      useFactory: (limit: number) => {
+        const eventBus = IS_DEV_MODE
+          ? new ReplaySubject(limit)
           : new BehaviorSubject(2)
+        console.log(`limit = ${limit}`)
         return eventBus
-      }
-    }
+      },
+      inject: [{ token: 'LIMIT', optional: true }]
+    },
+    {
+      provide: 'LIMIT',
+      useValue: 4,
+    },
   ],
 })
 export class AppModule { }
