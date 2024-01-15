@@ -4,6 +4,8 @@ import {
   Delete,
   Get,
   Headers,
+  Inject,
+  Optional,
   Param,
   Post,
   Put,
@@ -15,6 +17,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Request, Response, Express } from 'express';
+import { UsersStore } from 'src/stores/users.store';
 
 // get request parameters
 interface VideoParams {
@@ -30,6 +33,14 @@ interface VideoDTO {
 
 @Controller('/users')
 export class UsersController {
+  // constructor
+  constructor(
+    @Inject(UsersStore) // this line is optional
+    // optional decorator
+    @Optional()
+    private store: UsersStore){
+    console.log(this.store)
+  }
   // methods for request handlers
   @Get('/profile')
   getProfile(@Req() req: Request) {
