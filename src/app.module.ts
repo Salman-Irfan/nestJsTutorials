@@ -4,6 +4,9 @@ import { NotesController } from './controllers/notes.controllers';
 import { IpsController } from './controllers/subDomainRouting.controllers';
 import { UsersStore } from './stores/users.store';
 import { DependencyController } from './controllers/dependency.controllers';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+
+const IS_DEV_MODE = true;
 
 @Module({
   imports: [],
@@ -19,6 +22,15 @@ import { DependencyController } from './controllers/dependency.controllers';
     UsersStore,
     // name of the injection token, value or useClass name
     { provide: 'DATABASE_NAME', useValue: 'nestMongo' },
+    {
+      provide: 'EVENT_STORE',
+      useFactory: () => {
+        const eventBus = IS_DEV_MODE 
+          ? new ReplaySubject(2)
+          : new BehaviorSubject(2)
+        return eventBus
+      }
+    }
   ],
 })
 export class AppModule { }
