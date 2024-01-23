@@ -5,6 +5,8 @@ import { IpsController } from './controllers/subDomainRouting.controllers';
 import { UsersStore } from './stores/users.store';
 import { DependencyController } from './controllers/dependency.controllers';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ProductsController } from './controllers/products.controllers';
+import { ProductsService } from './services/products-service';
 
 const IS_DEV_MODE = true;
 
@@ -15,6 +17,7 @@ const IS_DEV_MODE = true;
     NotesController,
     IpsController,
     DependencyController,
+    ProductsController,
   ],
   // in providers, we'll mention those classes that can be used as a dependency, and we want its instance
   providers: [
@@ -37,6 +40,8 @@ const IS_DEV_MODE = true;
       provide: 'LIMIT',
       useValue: 4,
     },
+    // service providers
+    ProductsService
   ],
 })
 export class AppModule { }

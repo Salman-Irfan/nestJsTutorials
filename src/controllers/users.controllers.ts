@@ -33,7 +33,6 @@ interface VideoDTO {
   tag: string;
 }
 
-@Injectable({scope: Scope.REQUEST}) // request scope, whenever a request comes to this server, instance gets called
 @Controller('/users')
 export class UsersController {
   // constructor
@@ -43,7 +42,7 @@ export class UsersController {
     // @Optional()
     private store: UsersStore){
     // console.log(this.store)
-    console.log(`users store init`)
+    console.log(`controller init`)
   }
   // methods for request handlers
   @Get('/profile')
