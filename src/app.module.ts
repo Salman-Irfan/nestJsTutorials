@@ -7,11 +7,12 @@ import { DependencyController } from './controllers/dependency.controllers';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { ProductsController } from './controllers/products.controllers';
 import { ProductsService } from './services/products-service';
+import { UsersModule } from './users/users.module';
 
 const IS_DEV_MODE = true;
 
 @Module({
-  imports: [],
+  imports: [UsersModule],
   controllers: [
     UsersController,
     NotesController,
