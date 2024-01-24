@@ -8,6 +8,7 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { ProductsController } from './controllers/products.controllers';
 import { ProductsService } from './services/products-service';
 import { UsersModule } from './users/users.module';
+import { PipesController } from './controllers/pipes.controllers';
 
 const IS_DEV_MODE = true;
 
@@ -19,6 +20,7 @@ const IS_DEV_MODE = true;
     IpsController,
     DependencyController,
     ProductsController,
+    PipesController,
   ],
   // in providers, we'll mention those classes that can be used as a dependency, and we want its instance
   providers: [
