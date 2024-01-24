@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateNoteDTO } from '../dto';
+import { JoiValidationPipe } from 'src/pipes/joi-note-validation.pipe';
+import { createNoteSchema } from 'src/schemas/create-note.schema';
 
 const NOTES = [];
 
@@ -7,7 +9,7 @@ const NOTES = [];
 export class NotesController {
   // create a note
   @Post('/')
-  addNote(@Body() createNoteDto: CreateNoteDTO) {
+  addNote(@Body(new JoiValidationPipe(createNoteSchema)) createNoteDto: CreateNoteDTO) {
     try {
       NOTES.push(createNoteDto);
       return {
