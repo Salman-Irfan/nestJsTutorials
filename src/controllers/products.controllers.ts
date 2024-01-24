@@ -1,6 +1,6 @@
 import { ProductsService } from 'src/services/products-service';
 import { CreateProductDTO } from './../dto/createProduct.dto';
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 
 @Controller('/products')
 export class ProductsController {
@@ -24,7 +24,8 @@ export class ProductsController {
     }
     // find product by id
     @Get('/:id')
-    findProductByProductId(@Param('id') id: number) {
+    findProductByProductId(@Param('id', ParseIntPipe) id: number) {
+        console.log(typeof id); // number
         return this.productsService.getProductById(+id);
         
     }
