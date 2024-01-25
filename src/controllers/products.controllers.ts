@@ -1,6 +1,6 @@
 import { ProductsService } from 'src/services/products-service';
 import { CreateProductDTO } from './../dto/createProduct.dto';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, ValidationPipe } from "@nestjs/common";
 
 @Controller('/products')
 export class ProductsController {
@@ -9,7 +9,7 @@ export class ProductsController {
     }
     // create product
     @Post('/add-product')
-    addProduct(@Body() createProductDTO: CreateProductDTO) {
+    addProduct(@Body(ValidationPipe) createProductDTO: CreateProductDTO) {
         this.productsService.addProduct(createProductDTO)
         return {
             success: true,
