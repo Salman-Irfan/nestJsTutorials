@@ -3,10 +3,11 @@ import { UsersController } from "./controllers/users.controller";
 import { AccountController } from "./controllers/accounts.controller";
 import { UsersService } from "./services/users.service";
 import { UserAgentClassMiddleware, userAgent } from "./middlewares/user-agent.middleware";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
     // imports
-    imports: [],
+    imports: [ConfigModule],
     // controllers
     controllers: [
         UsersController,
