@@ -1,6 +1,7 @@
 import { ProductsService } from 'src/services/products-service';
 import { CreateProductDTO } from './../dto/createProduct.dto';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseInterceptors, ValidationPipe } from "@nestjs/common";
+import { RecentSearchInterceptor } from 'src/interceptors/recent-search.interceptor';
 
 @Controller('/products')
 export class ProductsController {
@@ -19,6 +20,7 @@ export class ProductsController {
     }
     // find all products
     @Get('/all-products')
+    @UseInterceptors(RecentSearchInterceptor)
     fetchAllProducts() {
         return this.productsService.getProducts();
     }
