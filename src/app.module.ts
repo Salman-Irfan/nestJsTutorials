@@ -9,12 +9,21 @@ import { ProductsController } from './controllers/products.controllers';
 import { ProductsService } from './services/products-service';
 import { UsersModule } from './users/users.module';
 import { PipesController } from './controllers/pipes.controllers';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseConfigService } from './config/mongoose-config.service';
 
 const IS_DEV_MODE = true;
 
 @Module({
-  imports: [UsersModule, ConfigModule.forRoot()],
+  imports: [
+    UsersModule,
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: MongooseConfigService
+    }),
+  ],
   controllers: [
     UsersController,
     NotesController,
