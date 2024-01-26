@@ -11,6 +11,8 @@ export class NotesController {
   @Post('/')
   addNote(@Body(new JoiValidationPipe(createNoteSchema)) createNoteDto: CreateNoteDTO) {
     try {
+      const port = process.env.APP_PORT
+      console.log(port)
       NOTES.push(createNoteDto);
       return {
         success: true,
