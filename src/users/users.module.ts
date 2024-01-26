@@ -27,6 +27,7 @@ export class UsersModule implements NestModule {
             .forRoutes({ path: '/module/users', method: RequestMethod.GET })
             // a new middleware
             .apply(UserAgentClassMiddleware)
+            // .exclude() 
             .forRoutes({ path: '/module/users', method: RequestMethod.POST })
     }
 }
