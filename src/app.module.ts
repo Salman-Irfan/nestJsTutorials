@@ -14,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config/mongoose-config.service';
 import { JobsModule } from './modules/jobs-module/jobs.module';
 import { UserModule } from './modules/user-module/user.module';
+import { MongooseModelsModule } from './schemas/mongoose-models.module';
 
 const IS_DEV_MODE = true;
 
@@ -22,6 +23,7 @@ const IS_DEV_MODE = true;
     UsersModule,
     JobsModule,
     UserModule,
+    MongooseModelsModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
