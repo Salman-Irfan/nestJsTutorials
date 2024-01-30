@@ -12,12 +12,16 @@ import { PipesController } from './controllers/pipes.controllers';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config/mongoose-config.service';
+import { JobsModule } from './modules/jobs-module/jobs.module';
+import { UserModule } from './modules/user-module/user.module';
 
 const IS_DEV_MODE = true;
 
 @Module({
   imports: [
     UsersModule,
+    JobsModule,
+    UserModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

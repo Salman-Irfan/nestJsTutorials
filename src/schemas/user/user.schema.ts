@@ -1,6 +1,7 @@
 import { ACCOUNT_STATUS, ACCOUNT_TYPE } from '../../constants/account.constants';
 import { Prop, Schema, SchemaFactory, raw } from "@nestjs/mongoose";
 import { Address, AddressSchema } from '../common/address.schema';
+import { Document } from 'mongoose';
 
 @Schema({
     timestamps: true,
@@ -65,6 +66,9 @@ export class User {
 }
 
 const schema = SchemaFactory.createForClass(User)
+
+// document
+export type UserDocument = User & Document
 
 // export const User_Model = "User"
 export const User_Model = User.name

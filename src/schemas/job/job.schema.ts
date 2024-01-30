@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Types } from "mongoose";
+import { Document, Types } from "mongoose";
 import { User, User_Model } from "../user/user.schema";
 import { Address, AddressSchema } from "../common/address.schema";
 import { JOB_TYPE } from "src/constants/job.constants";
@@ -40,6 +40,9 @@ export class Job {
     @Prop({ type: AddressSchema, required: true })
     location: Address;
 }
+
+// document
+export type JobDocument = Job & Document
 
 export const JobSchema = SchemaFactory.createForClass(Job);
 
