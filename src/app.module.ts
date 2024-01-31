@@ -15,6 +15,8 @@ import { MongooseConfigService } from './config/mongoose-config.service';
 import { JobsModule } from './modules/jobs-module/jobs.module';
 import { UserModule } from './modules/user-module/user.module';
 import { MongooseModelsModule } from './schemas/mongoose-models.module';
+import { EmployerModule } from './modules/employer-module/employer.module';
+import { StudentModule } from './modules/student-module/student.module';
 
 const IS_DEV_MODE = true;
 
@@ -23,6 +25,8 @@ const IS_DEV_MODE = true;
     UsersModule,
     JobsModule,
     UserModule,
+    EmployerModule,
+    StudentModule,
     MongooseModelsModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({

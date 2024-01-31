@@ -6,6 +6,8 @@ import { hash } from 'bcrypt';
 
 @Schema({
     timestamps: true,
+    // user, student, employer
+    discriminatorKey: 'userKind'
 })
 
 export class User {
