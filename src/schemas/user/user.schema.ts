@@ -2,6 +2,7 @@ import { ACCOUNT_STATUS, ACCOUNT_TYPE } from '../../constants/account.constants'
 import { Prop, Schema, SchemaFactory, raw } from "@nestjs/mongoose";
 import { Address, AddressSchema } from '../common/address.schema';
 import { Document } from 'mongoose';
+import { hash } from 'bcrypt';
 
 @Schema({
     timestamps: true,
@@ -74,3 +75,9 @@ export type UserDocument = User & Document
 export const User_Model = User.name
 
 export const UserSchema = schema
+
+UserSchema.pre('save', async function (next: Function) {
+    const hashedPassword = await hash(this.password, 10)
+    this.password = hashedPassword
+    next();
+})

@@ -13,6 +13,14 @@ export class UserController {
         return this.userService.create(createUserDto)
     }
 
+    // login
+    @Post('/user/login')
+    loginUser(@Body() loginUserData : any){
+        return this.userService.loginUser(loginUserData)
+    } 
+
+    
+
     // find all
     @Get('/users')
     getAllUsers() {
