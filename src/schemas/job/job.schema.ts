@@ -8,6 +8,7 @@ import { JOB_TYPE } from "src/constants/job.constants";
 @Schema({
     timestamps: true,
 })
+
 export class Job {
     @Prop({ type: Types.ObjectId, ref: User_Model , required: true })
     employer: Types.ObjectId | User;
@@ -41,9 +42,12 @@ export class Job {
     location: Address;
 }
 
+const schema = SchemaFactory.createForClass(Job)
+
 // document
 export type JobDocument = Job & Document
 
-export const JobSchema = SchemaFactory.createForClass(Job);
 
 export const JOB_MODEL = Job.name; // Job
+
+export const JobSchema = schema

@@ -41,6 +41,4 @@ export class UserController {
     ) {
         return this.userService.deleteById(id)
     }
-
-
 }

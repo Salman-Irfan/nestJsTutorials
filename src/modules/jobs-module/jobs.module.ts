@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
 import { JobsService } from "./jobs.service";
-import { MongooseModule } from "@nestjs/mongoose";
-import { JOB_MODEL, JobSchema } from "src/schemas/job/job.schema";
+import { JobsController } from "./jobs.controller";
+import { UserService } from "../user-module/user.service";
 
 @Module({
     imports: [],
-    controllers: [],
-    providers: [JobsService],
+    controllers: [JobsController],
+    providers: [JobsService, UserService],
     exports: [],
 })
 
