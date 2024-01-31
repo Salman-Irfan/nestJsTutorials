@@ -10,7 +10,7 @@ import { JOB_TYPE } from "src/constants/job.constants";
 })
 
 export class Job {
-    @Prop({ type: Types.ObjectId, ref: User_Model , required: true })
+    @Prop({ type: Types.ObjectId, ref: User_Model, required: true })
     employer: Types.ObjectId | User;
 
     @Prop({ required: true })
@@ -42,12 +42,27 @@ export class Job {
     location: Address;
 }
 
-const schema = SchemaFactory.createForClass(Job)
-
 // document
 export type JobDocument = Job & Document
 
+// schema
+export const JobSchema = SchemaFactory.createForClass(Job)
+
+// pre hooks
+
+function populateEmployerMiddleware(next: Function) {
+    this.populate({
+        path: 'employer',
+        select: {
+            name: 1,
+            email: 1
+        }
+    })
+    next()
+}
+
+JobSchema.pre('find', populateEmployerMiddleware)
+
+JobSchema.pre('findOne', populateEmployerMiddleware)
 
 export const JOB_MODEL = Job.name; // Job
-
-export const JobSchema = schema
