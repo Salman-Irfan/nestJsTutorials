@@ -16,23 +16,23 @@ export class JobsController {
 
     // find all
     @Get('/jobs')
-    getAllUsers() {
-        // logic
+    getAllJobs() {
+        return this.jobsService.findAll()
     }
 
     // find user by id
     @Get('/job/:id')
     getUserById(@Param('id') id: string) {
-        // logic
+        return this.jobsService.findById(id)
     }
 
     // update user by id
     @Put('/update-job/:id')
     updateUserById(
         @Param('id') id: string,
-        @Body() updateJobrDto: UpdateJobDTO
+        @Body() updateJobDto: UpdateJobDTO
     ) {
-        // logic
+        return this.jobsService.updateById(id, updateJobDto)
     }
 
     // delete user by id
@@ -40,6 +40,6 @@ export class JobsController {
     deleteUserById(
         @Param('id') id: string
     ) {
-        // logic
+        return this.jobsService.deleteById(id)
     }
 }
