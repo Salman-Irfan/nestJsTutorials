@@ -17,6 +17,7 @@ import { UserModule } from './modules/user-module/user.module';
 import { MongooseModelsModule } from './schemas/mongoose-models.module';
 import { EmployerModule } from './modules/employer-module/employer.module';
 import { StudentModule } from './modules/student-module/student.module';
+import { NotesMongo } from './controllers/notes-mongo.controller';
 
 const IS_DEV_MODE = true;
 
@@ -41,6 +42,7 @@ const IS_DEV_MODE = true;
     DependencyController,
     ProductsController,
     PipesController,
+    NotesMongo // notes constroller is register in controllers array,
   ],
   // in providers, we'll mention those classes that can be used as a dependency, and we want its instance
   providers: [

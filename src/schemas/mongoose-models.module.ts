@@ -5,6 +5,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { JOB_MODEL, JobSchema } from "./job/job.schema";
 import { STUDENT_MODEL, StudentSchema } from "./student/student.schema";
 import { EMPLOYER_MODEL, EmployerSchema } from "./employer/employer.schema";
+import { NOTE_MODEL, NoteSchema } from "./note/note.schema";
 
 const MODELS = [
     {
@@ -16,6 +17,7 @@ const MODELS = [
         ],
     },
     { name: JOB_MODEL, schema: JobSchema },
+    { name: NOTE_MODEL, schema: NoteSchema },
 ]
 
 @Global()
